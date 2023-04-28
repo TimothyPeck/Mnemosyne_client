@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "quasar": "^2.11.10",
+    "vee-validate": "^4.8.6"
+  }
+}
