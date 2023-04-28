@@ -4,40 +4,40 @@ import { fetchWrapper } from '../utils/fetchWrapper'
 const BASE_URL: string = `${import.meta.env.VITE_API_URL}/books`
 
 export const useBookStore = defineStore({
-  id: 'books',
+  id: 'books-store',
   state: () => ({
-    books: [],
-    book: null,
-    loading: false,
-    error: null as string | null | unknown
+    booksState: [],
+    bookSate: { title: '', pages: 0, commentary: '' },
+    loadingState: false,
+    errorState: null as string | null | unknown
   }),
   getters: {
-    books: (state) => state.books,
-    book: (state) => state.book,
-    loading: (state) => state.loading,
-    error: (state) => state.error
+    books: (state) => state.booksState,
+    book: (state) => state.bookSate,
+    loading: (state) => state.loadingState,
+    error: (state) => state.errorState
   },
   actions: {
     async getBooks() {
-      this.loading = true
+      this.loadingState = true
       try {
         const books = await fetchWrapper.get(BASE_URL, '')
-        this.books = books
+        this.booksState = books
       } catch (error) {
-        this.error = error
+        this.errorState = error
       } finally {
-        this.loading = false
+        this.loadingState = false
       }
     },
     async getBook(id: string) {
-      this.loading = true
+      this.loadingState = true
       try {
         const book = await fetchWrapper.get(`${BASE_URL}/${id}`, '')
-        this.book = book
+        this.bookSate = book
       } catch (error) {
-        this.error = error
+        this.errorState = error
       } finally {
-        this.loading = false
+        this.loadingState = false
       }
     }
   }
