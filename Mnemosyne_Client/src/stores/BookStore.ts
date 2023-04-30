@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { fetchWrapper } from '../utils/fetchWrapper'
 
-const BASE_URL: string = `${import.meta.env.VITE_API_URL}/books`
+const BASE_URL: string = `http://127.0.0.1:8080/api/books`
 
 export const useBookStore = defineStore({
   id: 'books-store',
@@ -21,7 +21,7 @@ export const useBookStore = defineStore({
     async getBooks() {
       this.loadingState = true
       try {
-        const books = await fetchWrapper.get(BASE_URL, '')
+        const books = await fetchWrapper.get(BASE_URL, null)
         this.booksState = books
       } catch (error) {
         this.errorState = error
@@ -32,7 +32,7 @@ export const useBookStore = defineStore({
     async getBook(id: string) {
       this.loadingState = true
       try {
-        const book = await fetchWrapper.get(`${BASE_URL}/${id}`, '')
+        const book = await fetchWrapper.get(`${BASE_URL}/${id}`, null)
         this.bookSate = book
       } catch (error) {
         this.errorState = error
