@@ -21,7 +21,7 @@ export const useBookStore = defineStore({
     async getBooks() {
       this.loadingState = true
       try {
-        const books = await fetchWrapper.get(BASE_URL, '')
+        const books = await fetchWrapper.get(BASE_URL, null)
         this.booksState = books
         return books
       } catch (error) {
