@@ -44,7 +44,9 @@ export default {
       <input type="submit" value="Search" class="search-button" />
     </Form>
   </div>
-  <BookComponent v-for="book in books" v-bind:key="book.title" :book="book" />
+  <div class="book-container">
+    <BookComponent v-for="book in books" v-bind:key="book.title" :book="book" />
+  </div>
 </template>
 
 <style scoped>

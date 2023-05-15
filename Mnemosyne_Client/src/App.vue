@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { RouterView, RouterLink } from 'vue-router'
-import BookComponent from './components/BookComponent.vue'
 import { useBookStore } from './stores/BookStore'
 
 // await bookStore.getBooks()
@@ -15,9 +14,6 @@ export interface Book_I {
 }
 export default {
   name: 'App',
-  components: {
-    BookComponent
-  },
   data() {
     return {
       books: [] as Book_I[],

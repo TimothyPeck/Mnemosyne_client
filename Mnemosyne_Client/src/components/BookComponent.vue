@@ -2,7 +2,7 @@
   <div>
     <h2>{{ book.name }}</h2>
     <ul>
-      <li v-if="book.commentary != ''">{{ book.commentary }}</li>
+      <li v-if="book.commentary != ' '">{{ book.commentary }}</li>
       <li>Current page: {{ book.page }}</li>
     </ul>
   </div>
