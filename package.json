@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "quasar": "^2.11.10",
-    "vee-validate": "^4.8.6"
+    "vee-validate": "^4.8.6",
+    "vue-router": "^4.2.0"
   }
 }

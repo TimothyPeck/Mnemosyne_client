@@ -1,19 +1,19 @@
 import { defineStore } from 'pinia'
 import { fetchWrapper } from '../utils/fetchWrapper'
 
-const BASE_URL: string = `${import.meta.env.VITE_API_URL}/books`
+const BASE_URL: string = `${import.meta.env.VITE_API_URL}/book`
 
 export const useBookStore = defineStore({
   id: 'books-store',
   state: () => ({
     booksState: [],
-    bookSate: { title: '', pages: 0, commentary: '' },
+    bookState: { title: '', pages: 0, commentary: '' },
     loadingState: false,
     errorState: null as string | null | unknown
   }),
   getters: {
     books: (state) => state.booksState,
-    book: (state) => state.bookSate,
+    book: (state) => state.bookState,
     loading: (state) => state.loadingState,
     error: (state) => state.errorState
   },
@@ -23,6 +23,7 @@ export const useBookStore = defineStore({
       try {
         const books = await fetchWrapper.get(BASE_URL, '')
         this.booksState = books
+        return books
       } catch (error) {
         this.errorState = error
       } finally {
@@ -33,7 +34,19 @@ export const useBookStore = defineStore({
       this.loadingState = true
       try {
         const book = await fetchWrapper.get(`${BASE_URL}/${id}`, '')
-        this.bookSate = book
+        this.bookState = book
+      } catch (error) {
+        this.errorState = error
+      } finally {
+        this.loadingState = false
+      }
+    },
+    async findBook(searchTerm: string) {
+      this.loadingState = true
+      try {
+        const books = await fetchWrapper.post(`${BASE_URL}/find/${searchTerm}`, '')
+        this.bookState = books
+        return books
       } catch (error) {
         this.errorState = error
       } finally {

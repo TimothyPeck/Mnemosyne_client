@@ -7,7 +7,7 @@ export const fetchWrapper = {
 
 function request(method: string) {
   return (url: string, body: string | null) => {
-    const options = { method, headers: { 'Content-Type': '', Accept: '' }, body }
+    const options = { method, headers: { 'Content-Type': '', 'Accept': '' }, body }
     if (body) {
       options.headers['Content-Type'] = 'application/json'
       options.headers['Accept'] = 'application/json'
