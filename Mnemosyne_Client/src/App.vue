@@ -12,6 +12,33 @@ export interface Book_I {
   page: number
   commentary: string
 }
+export interface GoogleBook_I{
+  selfLink: string,
+  volumeInfo: {
+    title: string,
+    subtitle: string,
+    authors: string[],
+    publisher: string,
+    publishedDate: string,
+    description: string,
+    pageCount: number,
+    printType: string,
+    categories: string[],
+    averageRating: number,
+    ratingsCount: number,
+    maturityRating: string,
+    allowAnonLogging: boolean,
+    contentVersion: string,
+    imageLinks: {
+      smallThumbnail: string,
+      thumbnail: string
+    },
+    language: string,
+    previewLink: string,
+    infoLink: string,
+    canonicalVolumeLink: string
+  },
+}
 export default {
   name: 'App',
   data() {
@@ -53,6 +80,7 @@ export default {
     <h1>Mnemosyne</h1>
     <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/search">Find books</RouterLink>
+    <RouterLink to="/googleSearch">Search from Google Books</RouterLink>
   </nav>
   <main>
     <RouterView />

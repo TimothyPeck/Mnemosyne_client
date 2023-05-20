@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { Form, Field } from 'vee-validate'
-import { useBookStore } from '../stores/BookStore'
-import BookComponent from '@/components/BookComponent.vue'
+import { useGoogleBooksStore } from '@/stores/GoogleBooksStore'
+import GoogleBookComponent from './GoogleBookComponent.vue'
 import * as yup from 'yup'
+import type { GoogleBook_I } from '@/App.vue'
 
 const schema = yup.object().shape({
   searchTerm: yup.string().required()
@@ -14,14 +15,16 @@ export default {
 
   methods: {
     async onSubmit(values: any) {
-      const bookStore = useBookStore()
+      const bookStore = useGoogleBooksStore()
       const searchTerm = values.searchTerm
-      this.books = await bookStore.findBook(searchTerm)
+      this.books = await bookStore.getBooks(searchTerm)
+      //   books = bookStore.booksState
+      console.log(this.books)
     }
   },
   data() {
     return {
-      books: [{ title: '', pages: 0, commentary: '' }],
+      books: Array<GoogleBook_I>,
     }
   }
 }
@@ -35,7 +38,7 @@ export default {
     </Form>
   </div>
   <div class="book-container">
-    <BookComponent v-for="book in books" v-bind:key="book.title" :book="book" />
+    <GoogleBookComponent v-for="book in books" v-bind:key="book.volumeInfo.title" :book="book" />
   </div>
 </template>
 
