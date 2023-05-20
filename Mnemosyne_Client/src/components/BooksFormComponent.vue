@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      books: [{ title: '', pages: 0, commentary: '' }],
+      books: [{ name: '', page: 0, commentary: '' }],
     }
   }
 }
@@ -35,7 +35,7 @@ export default {
     </Form>
   </div>
   <div class="book-container">
-    <BookComponent v-for="book in books" v-bind:key="book.title" :book="book" />
+    <BookComponent v-for="book in books" v-bind:key="book.name" :book="book" />
   </div>
 </template>
 

@@ -20,7 +20,7 @@ export default defineComponent({
     <ul>
         Authors:
         <ul>
-            <li v-for="author in book.volumeInfo.authors">{{ author }}</li>
+            <li v-for="author in book.volumeInfo.authors" v-bind:key="author">{{ author }}</li>
         </ul>
       <li v-if="book.volumeInfo.description != ' '">{{ book.volumeInfo.description }}</li>
       <li>Page count: {{ book.volumeInfo.pageCount }}</li>

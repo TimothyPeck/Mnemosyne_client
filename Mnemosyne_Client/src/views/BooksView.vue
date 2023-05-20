@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      books: [{ title: '', pages: 0, commentary: '' }]
+      books: [{ name: '', page: 0, commentary: '' }]
     }
   },
   methods: {
@@ -30,6 +30,6 @@ export default {
 }
 </script>
 <template>
-  <BookComponent v-for="book in books" v-bind:key="book.title" :book="book" />
+  <BookComponent v-for="book in books" v-bind:key="book.name" :book="book" />
 </template>
 <style scoped></style>

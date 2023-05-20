@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      books: Array<GoogleBook_I>,
+      books: [] as GoogleBook_I[],
     }
   }
 }
