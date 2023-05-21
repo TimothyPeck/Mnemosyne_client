@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      books: [{ name: '', page: 0, commentary: '' }],
+      books: [{id:0, name: '', page: 0, commentary: '' }],
     }
   }
 }

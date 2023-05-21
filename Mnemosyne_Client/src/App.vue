@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { RouterView, RouterLink } from 'vue-router'
-import { useBookStore } from './stores/BookStore'
 
-// await bookStore.getBooks()
-// var books = [{ title: '', pages: 0, commentary: '' }]
-// books = bookStore.booksState
 </script>
 <script lang="ts">
 export interface Book_I {
+  id: number | null
   name: string
   page: number
   commentary: string
@@ -41,37 +38,6 @@ export interface GoogleBook_I{
 }
 export default {
   name: 'App',
-  data() {
-    return {
-      books: [] as Book_I[],
-      dataReady: false
-    }
-  },
-  created() {
-    this.getAllBooks()
-  },
-  methods: {
-    async getAllBooks() {
-      console.log('getAllBooks()')
-      this.dataReady = false
-      const bookStore = useBookStore()
-      await bookStore.getBooks()
-      const books = await bookStore.books
-      var ibook: Book_I
-      var booksArray: Book_I[] = []
-      for (ibook of books) {
-        let book = {
-          name: ibook.name,
-          page: ibook.page,
-          commentary: ibook.commentary
-        }
-        booksArray.push(book)
-      }
-      this.dataReady = true
-      this.books = booksArray
-      return booksArray
-    }
-  }
 }
 </script>
 

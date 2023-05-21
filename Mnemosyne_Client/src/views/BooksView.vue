@@ -3,9 +3,6 @@ import { useBookStore } from '../stores/BookStore'
 import BookComponent from '@/components/BookComponent.vue'
 // const bookStore = useBookStore()
 
-// var books = [{ title: '', pages: 0, commentary: '' }]
-// books = await bookStore.getBooks()
-// // books = bookStore.booksState
 </script>
 <script lang="ts">
 export default {
@@ -15,7 +12,7 @@ export default {
   },
   data() {
     return {
-      books: [{ name: '', page: 0, commentary: '' }]
+      books: [{id: 0, name: '', page: 0, commentary: '' }]
     }
   },
   methods: {

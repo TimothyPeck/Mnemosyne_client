@@ -4,6 +4,7 @@
     <ul>
       <li v-if="book.commentary != ' '">{{ book.commentary }}</li>
       <li>Current page: {{ book.page }}</li>
+      <li><a :href="'/update/'+book.id">Update</a></li>
     </ul>
   </div>
 </template>
@@ -19,7 +20,7 @@ export default defineComponent({
       type: Object as PropType<Book_I>,
       required: true
     }
-  },
+  }
 })
 </script>
 <style scoped>

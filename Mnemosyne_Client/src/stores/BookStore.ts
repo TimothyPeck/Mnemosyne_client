@@ -30,11 +30,12 @@ export const useBookStore = defineStore({
         this.loadingState = false
       }
     },
-    async getBook(id: string) {
+    async getBook(id: Number) {
       this.loadingState = true
       try {
-        const book = await fetchWrapper.get(`${BASE_URL}/${id}`, '')
+        const book = await fetchWrapper.get(`${BASE_URL}/${id}`, null)
         this.bookState = book
+        return book
       } catch (error) {
         this.errorState = error
       } finally {
@@ -52,6 +53,29 @@ export const useBookStore = defineStore({
       } finally {
         this.loadingState = false
       }
-    }
+    },
+    async updateBook(book: any) {
+      this.loadingState = true
+      try {
+        const response = await fetchWrapper.put(`${BASE_URL}/${book.id}`, JSON.stringify(book))
+        this.bookState = response
+      } catch (error) {
+        this.errorState = error
+        console.log(error)
+      } finally {
+        this.loadingState = false
+      }
+    },
+    async deleteBook(id: string) {
+      this.loadingState = true
+      try {
+        const response = await fetchWrapper.delete(`${BASE_URL}/${id}`, '')
+        this.bookState = response
+      } catch (error) {
+        this.errorState = error
+      } finally {
+        this.loadingState = false
+      }
+    },
   }
 })
